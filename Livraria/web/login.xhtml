@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- login.xhtml -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet library="css/redmond" name="jquery-ui-1.8.5.custom.css"/>
+    </h:head>
+    <body>
+        <div align="center">
+            <p:fieldset style="width:300px" >
+                <h:panelGroup rendered="#{!empty param.login_error}">
+                    <span style="color:red">Erro na autenticação.</span>
+                    <br/>
+                    <br/>
+                    <h:outputText value="Confira o nome do usuário e a senha." />
+                </h:panelGroup>
+                <h1><h:outputText value="Autenticação" style="text-decoration: underline" /></h1>
+                <form id="login" method="post" action="${request.contextPath}/j_spring_security_check">
+                    <h:panelGrid columns="2">
+                        <h:outputText value="Usuário: " />
+                        <p:inputText id="j_username" />
+                        <h:outputText value="Senha: " />
+                        <p:password id="j_password" />
+                    </h:panelGrid>
+                    <br/>
+                    <p:commandButton onclick="submit()" type="submit" value="Autenticar" global="false" />
+                    <script>
+                        document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
+                    </script>
+                </form>
+            </p:fieldset>
+        </div>
+    </body>
+</html>
