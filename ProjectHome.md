@@ -1,0 +1,1 @@
+Projeto para estudo das tecnologias Spring, JSF JPA, Primefaces.
